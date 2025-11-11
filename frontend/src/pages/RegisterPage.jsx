@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState, navigate } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 function RegisterPage() {
@@ -70,6 +70,7 @@ function RegisterPage() {
               id='password'
               className='w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none'
               placeholder='Your Password'
+              autoComplete=''
               value={password}
               onChange={e => setPassword(e.target.value)}
             />

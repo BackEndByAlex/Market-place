@@ -17,7 +17,16 @@ function LoginPage() {
 
     try {
       const response = await axios.post('http://localhost:3000/api/login', formData)
-      console.log('User logged in successfully:', response.data)
+      
+      const token = response.data.token
+
+      localStorage.setItem('authToken', token)
+
+      alert('Inloggning lyckad!'
+
+        // TODO: After successful login, navigate to home page
+        // navigate('/')
+      )
     } catch (error) {
       console.error('Error logging in user:', error)
       alert('Fel vid inloggning: ' + error.response.data.message)
@@ -52,6 +61,7 @@ function LoginPage() {
               id='password'
               className='w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none'
               placeholder='ange ditt lösenord'
+              autoComplete=''
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

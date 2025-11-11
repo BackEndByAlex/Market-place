@@ -12,9 +12,8 @@ import cors from "cors"
 import connectDB from "./config/mongoose.js"
 
 // Connect to the database
-connectDB()
-
 dotenv.config()
+connectDB()
 
 try {
   // Create Express application.
