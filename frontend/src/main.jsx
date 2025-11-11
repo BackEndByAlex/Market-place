@@ -1,20 +1,22 @@
-import { StrictMode } from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './index.css'
+import { StrictMode } from "react"
+import ReactDOM from "react-dom/client"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import "./index.css"
 
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from "./context/AuthContext"
 
-import Layout from './Layout'
-import HomePage from './pages/HomePage'
+import ProtectedRoute from "./components/ProtectedRoute.jsx"
 
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import SellPage from './pages/SellPage'
+import Layout from "./Layout"
+import HomePage from "./pages/HomePage"
+
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+import SellPage from "./pages/SellPage"
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
@@ -22,25 +24,31 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: 'login',
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: 'register',
+        path: "register",
         element: <RegisterPage />,
       },
       {
-        path: 'sell',
-        element: <SellPage />,
+        path: "/",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "sell",
+            element: <SellPage />,
+          },
+        ],
       },
     ],
   },
 ])
 
-ReactDOM.createRoot(document.querySelector('#root')).render(
+ReactDOM.createRoot(document.querySelector("#root")).render(
   <StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>
 )

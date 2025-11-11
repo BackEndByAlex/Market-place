@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react' 
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -8,6 +8,7 @@ function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const auth = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,11 +24,7 @@ function LoginPage() {
       const token = response.data.token
 
       auth.login(token)
-
-      alert('Inloggning lyckad!')
-
-        // TODO: After successful login, navigate to home page
-        // navigate('/')
+      navigate('/')
     } catch (error) {
       console.error('Error logging in user:', error)
       alert('Fel vid inloggning: ' + error.response.data.message)
