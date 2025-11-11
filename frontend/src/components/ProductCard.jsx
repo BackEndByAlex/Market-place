@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 function ProductCard({ product }) {
   const { user, token } = useAuth()
+  const navigate = useNavigate()
 
   const isOwner = user && user._id === product.user
 
@@ -34,6 +36,10 @@ function ProductCard({ product }) {
     }
   }
 
+  const handleEdit = () => {
+    navigate(`/edit-product/${product._id}`)
+  }
+
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-lg">
       <img
@@ -48,12 +54,22 @@ function ProductCard({ product }) {
         </p>
 
         {isOwner && (
-          <button
-            onClick={handleDelete}
-            className="mt-4 w-full rounded-md bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
-          >
-            Delete the listing
-          </button>
+          <div className="mt-4 flex space-x-2">
+            {" "}
+            {/* En flex-container för knapparna */}
+            <button
+              onClick={handleEdit} // <-- Koppla funktionen
+              className="w-full rounded-md bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
+            >
+              Redigera
+            </button>
+            <button
+              onClick={handleDelete}
+              className="w-full rounded-md bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
+            >
+              Ta bort
+            </button>
+          </div>
         )}
       </div>
     </div>

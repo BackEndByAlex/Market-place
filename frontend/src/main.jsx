@@ -13,33 +13,29 @@ import HomePage from "./pages/HomePage"
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import SellPage from "./pages/SellPage"
+import EditPage from "./pages/EditPage.jsx"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
+      { index: true, element: <HomePage /> },
+      { path: "login", element: <LoginPage /> },
+      { path: "register", element: <RegisterPage /> },
+    ],
+  },
+  {
+    path: "/",
+    element: <ProtectedRoute />,
+    children: [
       {
-        index: true,
-        element: <HomePage />,
+        path: "sell",
+        element: <SellPage />,
       },
       {
-        path: "login",
-        element: <LoginPage />,
-      },
-      {
-        path: "register",
-        element: <RegisterPage />,
-      },
-      {
-        path: "/",
-        element: <ProtectedRoute />,
-        children: [
-          {
-            path: "sell",
-            element: <SellPage />,
-          },
-        ],
+        path: "edit-product/:id",
+        element: <EditPage />,
       },
     ],
   },
