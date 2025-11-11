@@ -13,7 +13,7 @@ export const createProduct = async (req, res) => {
       description,
       price,
       imageUrl,
-      user: req.user._id, // <-- Vi fick 'req.user' från vår middleware!
+      user: req.user._id,
     })
 
     res.status(201).json(product)

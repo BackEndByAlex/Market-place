@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import ProductCard from '../components/ProductCard'
+import ProductCard from "../components/ProductCard"
 
 function HomePage() {
   const [products, setProducts] = useState([])
@@ -9,12 +9,11 @@ function HomePage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-
-        const response = await axios.get('http://localhost:3000/api/products')
+        const response = await axios.get("http://localhost:3000/api/products")
 
         setProducts(response.data)
       } catch (error) {
-        console.error('Kunde inte hämta produkter:', error)
+        console.error("Kunde inte hämta produkter:", error)
       } finally {
         setLoading(false)
       }
@@ -30,7 +29,6 @@ function HomePage() {
       </div>
     )
   }
- 
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
@@ -39,11 +37,9 @@ function HomePage() {
       </h1>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
-
       </div>
     </div>
   )
