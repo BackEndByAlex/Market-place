@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react' 
 import axios from 'axios'
+import { useAuth } from '../context/AuthContext.jsx'
 
 function LoginPage() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const auth = useAuth()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     
     const formData = {
       email,
@@ -20,13 +22,12 @@ function LoginPage() {
       
       const token = response.data.token
 
-      localStorage.setItem('authToken', token)
+      auth.login(token)
 
-      alert('Inloggning lyckad!'
+      alert('Inloggning lyckad!')
 
         // TODO: After successful login, navigate to home page
         // navigate('/')
-      )
     } catch (error) {
       console.error('Error logging in user:', error)
       alert('Fel vid inloggning: ' + error.response.data.message)

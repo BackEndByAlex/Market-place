@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 
+import { AuthProvider } from './context/AuthContext'
+
 import Layout from './Layout'
 import HomePage from './pages/HomePage'
 
@@ -37,6 +39,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.querySelector('#root')).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 )
