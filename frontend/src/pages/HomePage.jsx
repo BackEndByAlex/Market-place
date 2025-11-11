@@ -13,7 +13,7 @@ function HomePage() {
 
         setProducts(response.data)
       } catch (error) {
-        console.error("Kunde inte hämta produkter:", error)
+        throw new Error("Could not fetch products:", error)
       } finally {
         setLoading(false)
       }

@@ -3,12 +3,16 @@ import { createProduct } from "../controllers/productController.js"
 import { getProducts } from "../controllers/getProducts.js"
 import { deleteProduct } from "../controllers/deleteProduct.js"
 import { updateProduct } from "../controllers/updateProduct.js"
+import { getProductById } from "../controllers/getProductById.js"
 
 import { protect } from "../middleware/authMiddleware.js"
 
 const router = express.Router()
 
 router.get("/products", getProducts)
+
+router.get("/products/:id", getProductById)
+
 router.post("/products", protect, createProduct)
 
 router.delete("/products/:id", protect, deleteProduct)

@@ -10,6 +10,10 @@ export const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found." })
     }
 
+    console.log("Backend-jämförelse:")
+    console.log("Produktens ägare:", product.user.toString())
+    console.log("Inloggad användare:", req.user._id.toString())
+
     if (product.user.toString() !== req.user._id.toString()) {
       return res
         .status(403)

@@ -28,8 +28,7 @@ function LoginPage() {
       auth.login(token, user)
       navigate("/")
     } catch (error) {
-      console.error("Error logging in user:", error)
-      alert("Fel vid inloggning: " + error.response.data.message)
+      throw new Error("Could not log in:", error)
     }
   }
 

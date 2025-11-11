@@ -35,11 +35,9 @@ function SellPage() {
         config
       )
 
-      console.log("Product uploaded successfully:", response.data)
-      alert("Product uploaded successfully!")
       navigate("/")
     } catch (error) {
-      console.error("Error uploading product:", error)
+      throw new Error("Could not create product:", error)
     }
   }
 
