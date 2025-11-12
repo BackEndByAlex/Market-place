@@ -45,27 +45,44 @@ function ProductDetailPage() {
   const isOwner = user && user._id === product.user
 
   return (
-    <div className="mx-auto max-w-4xl p-4 py-8">
-      <div className="overflow-hidden rounded-lg bg-white shadow-lg">
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          className="h-96 w-full object-cover"
-        />
-        <div className="p-6">
-          <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
-          <p className="mt-2 text-4xl font-bold text-blue-600">
-            {product.price} kr
-          </p>
-          <p className="mt-4 text-base text-gray-700">{product.description}</p>
+    <div className="mx-auto max-w-5xl px-4 py-12">
+      <div className="overflow-hidden rounded-lg border border-blue-500/30 bg-gray-950 shadow-xl shadow-blue-500/20 md:grid md:grid-cols-2">
+        <div className="md:border-r md:border-gray-800">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="h-80 w-full object-cover md:h-full"
+          />
+        </div>
+
+        <div className="flex flex-col p-6 md:p-8">
+          <div>
+            <h1 className="mb-4 text-4xl font-bold">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                {product.name}
+              </span>
+            </h1>
+
+            <p className="mt-2 text-5xl font-extrabold text-blue-400">
+              {product.price} <span className="text-3xl">Credits</span>
+            </p>
+
+            <p className="mt-6 text-base text-gray-300">
+              {product.description}
+            </p>
+          </div>
+
+          <div className="flex-grow"></div>
 
           {isOwner && (
-            <Link
-              to={`/edit-product/${product._id}`}
-              className="mt-6 inline-block rounded-md bg-blue-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-600"
-            >
-              Edit your listing
-            </Link>
+            <div className="mt-8">
+              <Link
+                to={`/edit/${product._id}`}
+                className="block w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-3 text-center text-lg font-semibold text-white shadow-md shadow-purple-500/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/40 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+              >
+                Edit Your Listing
+              </Link>
+            </div>
           )}
         </div>
       </div>
